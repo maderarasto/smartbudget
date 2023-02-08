@@ -1,0 +1,26 @@
+{
+    "private": true,
+    "scripts": {
+        "dev": "vite",
+        "watch": "vite build --watch",
+        "build": "vite build"
+    },
+    "devDependencies": {
+        "@types/react-dom": "^18.0.10",
+        "axios": "^1.1.2",
+        "laravel-vite-plugin": "^0.7.3",
+        "lodash": "^4.17.19",
+        "postcss": "^8.1.14",
+        "vite": "^4.0.0"
+    },
+    "dependencies": {
+        "@fortawesome/fontawesome-svg-core": "^6.2.1",
+        "@fortawesome/free-regular-svg-icons": "^6.2.1",
+        "@fortawesome/free-solid-svg-icons": "^6.2.1",
+        "@fortawesome/react-fontawesome": "^0.2.0",
+        "@inertiajs/react": "^1.0.0",
+        "@vitejs/plugin-react": "^3.0.1",
+        "bootstrap": "^5.2.3",
+        "react-dom": "^18.2.0"
+    }
+}
