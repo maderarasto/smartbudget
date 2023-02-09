@@ -13,7 +13,8 @@ export default function Login() {
 
     const handleSubmit = (ev) => {
         ev.preventDefault();
-        console.log(data);
+
+        post('/auth/login');
     }
 
     return (
@@ -26,14 +27,15 @@ export default function Login() {
                             <span className="input-group-text">
                                 <FontAwesomeIcon icon={faUser} />
                             </span>
-                            <input type="text" className="form-control" placeholder="Email address" onChange={ev => setData('email', ev.target.value)} 
+                            <input type="text" className={'form-control ' + (errors.email && 'is-invalid')} placeholder="Email address" onChange={ev => setData('email', ev.target.value)}
                                 value={data.email} aria-label="Email address" />
+                            {errors.email && <div className="invalid-feedback d-block">{errors.email}</div>}
                         </div>
                         <div className="input-group mb-3">
                             <span className="input-group-text">
                                 <FontAwesomeIcon icon={faLock} />
                             </span>
-                            <input type="password" className="form-control" placeholder="Password" onChange={ev => setData('password', ev.target.value)} 
+                            <input type="password" className="form-control" placeholder="Password" onChange={ev => setData('password', ev.target.value)}
                                 value={data.password} aria-label="Password" />
                         </div>
                         <div className="d-flex justify-content-center-between mb-4">
