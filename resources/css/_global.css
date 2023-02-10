@@ -8,7 +8,3 @@ html, body, #app {
     position: relative;
     height: 100%;
 }
-
-.small-label {
-    font-size: 0.8rem;
-}

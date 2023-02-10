@@ -1,5 +1,6 @@
 @import url('./_variables.css');
 @import url('./_global.css');
+@import url('./theme.css');
 
 .page {
     position: absolute;

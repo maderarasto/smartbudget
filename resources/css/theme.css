@@ -1,0 +1,11 @@
+.card,
+.btn,
+.form-control,
+.input-group-text,
+.form-check-input[type="checkbox"] {
+    border-radius: 0;
+}
+
+label.form-label {
+    font-size: 0.8rem;
+}
