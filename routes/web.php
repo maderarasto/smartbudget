@@ -20,12 +20,18 @@ use \App\Http\Controllers\FinancesController;
 Route::get('/', [ IndexController::class, 'index']);
 
 Route::group([
-    'prefix' => 'auth'
+    'prefix' => 'auth',
 ], function () {
-    Route::get('/login', [AuthController::class, 'loginForm'])->name('login');
-    Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
-    Route::get('/register', [AuthController::class, 'registerForm'])->name('register');
-    Route::post('/register', [AuthController::class, 'register'])->name('register.submit');
+    Route::group(['middleware' => 'guest'], function () {
+        Route::get('/login', [AuthController::class, 'loginForm'])->name('login');
+        Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
+        Route::get('/register', [AuthController::class, 'registerForm'])->name('register');
+        Route::post('/register', [AuthController::class, 'register'])->name('register.submit');
+    });
+
+    Route::group(['middleware' => 'auth'], function () {
+        Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+    });
 });
 
 Route::group([

@@ -4,17 +4,22 @@ import { useForm, Link } from '@inertiajs/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faLock } from '@fortawesome/free-solid-svg-icons'
 
-export default function Login() {
-    const { data, setData, post, errors} = useForm({
+export default function Login({urls}) {
+    const { data, setData, post, reset, errors} = useForm({
         email: '',
         password: '',
         remember: false
     });
 
-    const handleSubmit = (ev) => {
+    function handleSubmit(ev) {
         ev.preventDefault();
+        post(urls['login'], {
+            onError: handleError
+        });
+    }
 
-        post('/auth/login');
+    function handleError() {
+        reset('password');
     }
 
     return (
@@ -49,7 +54,7 @@ export default function Login() {
                         <button type="submit" className="btn btn-primary w-100">Sign In</button>
                     </form>
                     <div className="d-flex justify-content-center">
-                        <small>Don't have an account? <Link href="/auth/register">Sign Up</Link></small>
+                        <small>Don't have an account? <Link href={urls['register']}>Sign Up</Link></small>
                     </div>
                 </div>
             </div>
