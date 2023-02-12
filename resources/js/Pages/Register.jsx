@@ -45,7 +45,7 @@ export default function Register({urls}) {
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="password" className="form-label text-uppercase fw-bold small-label">Password</label>
-                                <input type="password" className="form-control" id="password" ref={passwordRef} value={data.password} onChange={handleChange} />
+                                <input type="password" className="form-control" id="password" value={data.password} onChange={handleChange} />
                                 {errors.password && <div className="invalid-feedback d-block">Error: {errors.password}</div>}
                             </div>
                             <div className="mb-3">
