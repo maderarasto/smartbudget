@@ -3,56 +3,26 @@
 @import url('./theme.css');
 
 .page {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    /* Full height */
+    height: 100vh;
+    height: 100svh;
 
     display: flex;
-}
+    flex-direction: column;
 
-.page__index {
     justify-content: center;
     align-items: center;
 }
 
-.page__index .title {
+.page-index .title {
     margin-bottom: 0;
     font-weight: bold;
 }
 
-.page__index .subtitle {
+.page-index .subtitle {
     display: inline-block;
     padding-inline: 0.2rem;
     font-size: 0.8rem;
     letter-spacing: 0.45rem;
     color: #666;
-}
-
-.page-auth {
-    justify-content: center;
-    align-items: center;
-    background-color: whitesmoke;
-}
-
-.page-auth .card {
-    width: 350px;
-}
-
-.page-auth .card form {
-    padding: 15px;
-}
-
-.page-auth .card form h3 {
-    color: #666;
-}
-
-.page-login .form-check input[type="checkbox"] {
-    width: 0.9em !important;
-    height: 0.9em !important;
-}
-
-.page__login .form-check label {
-    font-size: 0.9rem;
 }

@@ -9,6 +9,8 @@
     @inertiaHead
 </head>
 <body>
-    @inertia
+    <div class="container-fluid">
+        @inertia
+    </div>
 </body>
 </html>
