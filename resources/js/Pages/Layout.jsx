@@ -1,7 +1,7 @@
-export default function Layout({children, colWidth}) {
+export default function Layout({children, bsColClass}) {
     return (
         <div className="row justify-content-center">
-            <div className={`col-${colWidth}`}>
+            <div className={`${bsColClass}`}>
                 {children}
             </div>
         </div>

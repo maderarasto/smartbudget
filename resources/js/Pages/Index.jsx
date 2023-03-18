@@ -18,6 +18,6 @@ function Index() {
 }
 
 Index.layout = (page) => {
-    return <Layout children={page} colWidth={page.props.bs_col_width} />
+    return <Layout children={page} bsColClass={page.props.bs_col_class} />
 };
 export default Index;

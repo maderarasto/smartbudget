@@ -8,7 +8,7 @@ class IndexController extends Controller
 {
     public function index() {
         return Inertia::render('Index', [
-            'bs_col_width' => 4
+            'bs_col_class' => 4
         ]);
     }
 }

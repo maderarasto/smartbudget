@@ -9,3 +9,10 @@
 label.form-label {
     font-size: 0.8rem;
 }
+
+@media (min-width: 2200px) {
+    #app .col-xl-3 {
+        width: calc(1000%/60);
+    }
+}
+
