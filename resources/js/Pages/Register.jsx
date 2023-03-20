@@ -1,5 +1,6 @@
 import React from 'react';
 import {useForm, Link} from '@inertiajs/react';
+import Layout from "./Layout";
 
 export default function Register({urls}) {
     const {data, setData, post, reset, errors} = useForm({
@@ -29,7 +30,7 @@ export default function Register({urls}) {
 
     return (
         <div className="page page-auth page-register">
-            <div className="card border-0 shadow">
+            <div className="card w-100 border-0 shadow">
                 <div className="card-body">
                     <form onSubmit={handleSubmit} method="post">
                         <h3 className="text-center fw-bold mt-2 mb-5">Sign Up</h3>
@@ -62,3 +63,7 @@ export default function Register({urls}) {
         </div>
     );
 }
+
+Register.layout = (page) => {
+    return <Layout children={page} bsColClass={page.props.bs_col_class} />
+};

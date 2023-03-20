@@ -66,6 +66,7 @@ class AuthController extends Controller
     public function registerForm() : InertiaResponse
     {
         return Inertia::render('Register', [
+            'bs_col_class' => 'col-9 col-sm-6 col-md-5 col-lg-4 col-xl-3',
             'urls' => [
                 'login' => route('login'),
                 'register' => route('register')
