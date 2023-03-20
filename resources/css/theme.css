@@ -1,3 +1,7 @@
+.container-fluid {
+    padding: 0;
+}
+
 .card,
 .btn,
 .form-control,
@@ -11,7 +15,7 @@ label.form-label {
 }
 
 @media (min-width: 2200px) {
-    #app .col-xl-3 {
+    #app .col-xxl-3 {
         width: calc(1000%/60);
     }
 }

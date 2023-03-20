@@ -27,7 +27,7 @@ class AuthController extends Controller
     public function loginForm() : InertiaResponse
     {
         return Inertia::render('Login', [
-            'bs_col_class' => 'col-9 col-sm-6 col-md-5 col-lg-4 col-xl-3',
+            'bs_col_class' => 'col-9 col-sm-7 col-md-5 col-lg-4 col-xl-4 col-xxl-3',
             'urls' => [
                 'login' => route('login'),
                 'register' => route('register')
@@ -56,7 +56,7 @@ class AuthController extends Controller
             ]);
         }
 
-        # After succesfully log in then redirect user
+        # After successfully log in then redirect user
         return redirect()->intended(route('finances.index'));
     }
 
@@ -75,7 +75,8 @@ class AuthController extends Controller
     }
 
     /**
-     * @return void
+     * @param Request $request
+     * @return RedirectResponse
      */
     public function register(Request $request) : RedirectResponse
     {
@@ -119,7 +120,7 @@ class AuthController extends Controller
     }
 
     /**
-     * @return void
+     * @return RedirectResponse
      */
     public function logout() : RedirectResponse
     {

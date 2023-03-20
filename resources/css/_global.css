@@ -4,6 +4,9 @@
     color: var(--black);
 }
 
+/**
+    Links styles
+ */
 a {
     text-decoration: none;
 }

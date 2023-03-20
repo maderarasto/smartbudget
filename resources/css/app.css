@@ -2,6 +2,11 @@
 @import url('./_global.css');
 @import url('./theme.css');
 
+#app {
+    width: 100%;
+    background-color: whitesmoke;
+}
+
 .page {
     /* Full height */
     height: 100vh;
