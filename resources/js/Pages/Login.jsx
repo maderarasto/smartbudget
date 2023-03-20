@@ -15,13 +15,18 @@ export default function Login({urls}) {
 
     function handleChange(ev) {
         const key = ev.target.id;
-        const value = ev.target.value;
+        let value = ev.target.value;
+
+        if (ev.target.type === 'checkbox') {
+            value = ev.target.checked;
+        }
 
         setData(key, value);
     }
 
     function handleSubmit(ev) {
         ev.preventDefault();
+
         post(urls['login'], {
             onError: handleError
         });
@@ -45,18 +50,19 @@ export default function Login({urls}) {
                             <span className="input-group-text" id="email">
                                 <FontAwesomeIcon icon={faUser} />
                             </span>
-                            <input type="text" className="form-control" placeholder="Email" aria-label="Email" aria-describedby="email" onChange={handleChange} />
+                            <input type="text" id="email" className="form-control" placeholder="Email" aria-label="Email" aria-describedby="email" onChange={handleChange} />
+                            {errors.email && <div className="invalid-feedback d-block">{errors.email}</div>}
                         </div>
                         <div className="input-group mb-3">
                             <span className="input-group-text" id="password">
                                 <FontAwesomeIcon icon={faLock} />
                             </span>
-                            <input type="password" className="form-control" placeholder="Password" aria-label="Password" aria-describedby="password" onChange={handleChange} />
+                            <input type="password" id="password" className="form-control" placeholder="Password" aria-label="Password" aria-describedby="password" onChange={handleChange} />
                         </div>
                         <div className="d-flex justify-content-between mb-4">
                             <div className="form-check">
-                                <input className="form-check-input" type="checkbox" value={data.remember} id="remember-me" onChange={handleChange}/>
-                                <label className="form-check-label" htmlFor="remember-me">
+                                <input className="form-check-input" type="checkbox" value={data.remember} id="remember" onChange={handleChange}/>
+                                <label className="form-check-label" htmlFor="remember">
                                     Remember me
                                 </label>
                             </div>
