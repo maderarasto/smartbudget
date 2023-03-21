@@ -5,7 +5,7 @@ import { useTranslation, Trans} from "react-i18next";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faLock } from '@fortawesome/free-solid-svg-icons'
 
-import Layout from "./Layout";
+import Layout from "./Layouts/Layout";
 
 export default function Login({urls}) {
     const {t} = useTranslation();
@@ -82,6 +82,6 @@ export default function Login({urls}) {
 }
 
 Login.layout = (page) => {
-    return <Layout children={page} bsColClass={page.props.bs_col_class} />
+    return <Layout children={page} title={page.props.title} bsColClass={page.props.bs_col_class} />
 };
 

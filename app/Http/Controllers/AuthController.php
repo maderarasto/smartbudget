@@ -27,6 +27,7 @@ class AuthController extends Controller
     public function loginForm(Request $request) : InertiaResponse
     {
         return Inertia::render('Login', [
+            'title' => 'Sign in',
             'bs_col_class' => 'col-9 col-sm-7 col-md-5 col-lg-4 col-xl-4 col-xxl-3',
             'urls' => [
                 'login' => route('login'),
@@ -67,6 +68,7 @@ class AuthController extends Controller
     {
 
         return Inertia::render('Register', [
+            'title' => 'Create account',
             'bs_col_class' => 'col-9 col-sm-7 col-md-5 col-lg-4 col-xl-4 col-xxl-3',
             'urls' => [
                 'login' => route('login'),

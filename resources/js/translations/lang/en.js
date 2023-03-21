@@ -3,6 +3,7 @@ const en = {
         titles: {
             "Sign in": 'Sign in',
             "Create account": 'Create account',
+            "Overview": 'Overview',
         },
 
         labels: {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from '@inertiajs/react';
 
-import Layout from "@/Pages/Layout";
+import Layout from './Layouts/Layout';
 
 function Index() {
     return (
@@ -18,6 +18,6 @@ function Index() {
 }
 
 Index.layout = (page) => {
-    return <Layout children={page} bsColClass={page.props.bs_col_class} />
+    return <Layout children={page} title={page.props.title} bsColClass={page.props.bs_col_class} />
 };
 export default Index;

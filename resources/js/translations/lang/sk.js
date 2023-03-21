@@ -3,6 +3,7 @@ const sk = {
         titles: {
             "Sign in": 'Prihlásenie',
             "Create account": 'Vytvorenie účtu',
+            "Overview": 'Prehľad',
         },
 
         labels: {
