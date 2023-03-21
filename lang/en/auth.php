@@ -14,7 +14,16 @@ return [
     */
 
     'failed' => 'These credentials do not match our records.',
-    'password' => 'The provided password is incorrect.',
-    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+
+    'name.required' => 'A name is required',
+    'name.max' => 'A name should be a maximum 255 characters long',
+
+    'email.required' => 'An email is required',
+    'email.email' => 'An email has to be in email format',
+    'email.unique' => 'An email is already in our records',
+
+    'password.required' => 'A password is required',
+    'password.min' => 'A password should be at least 8 characters long',
+    'password.confirmed' => 'A confirmation password does not match',
 
 ];

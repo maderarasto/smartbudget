@@ -1,4 +1,5 @@
 import './bootstrap';
+import './translations';
 
 import { createInertiaApp } from '@inertiajs/react';
 import { createRoot } from 'react-dom/client';

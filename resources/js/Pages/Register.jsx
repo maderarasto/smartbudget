@@ -1,8 +1,11 @@
 import React from 'react';
 import {useForm, Link} from '@inertiajs/react';
+import {useTranslation} from "react-i18next";
+
 import Layout from "./Layout";
 
 export default function Register({urls}) {
+    const {t} = useTranslation();
     const {data, setData, post, reset, errors} = useForm({
         name: '',
         email: '',
@@ -32,31 +35,31 @@ export default function Register({urls}) {
         <div className="page page-auth page-register">
             <div className="card w-100 border-0 shadow">
                 <div className="card-body">
-                    <form onSubmit={handleSubmit} method="post">
-                        <h3 className="text-center fw-bold mt-2 mb-5">Sign Up</h3>
+                    <form className="mb-3" method="post" onSubmit={handleSubmit}>
+                        <h3 className="text-center fw-bold mt-2 mb-5">{t('titles.Create account')}</h3>
                         <div className="mb-3">
-                            <label htmlFor="name" className="form-label text-uppercase fw-bold small-label">Name</label>
-                            <input type="text" className="form-control" id="name" value={data.name} onChange={handleChange} />
-                            {errors.name && <div className="invalid-feedback d-block">Error: {errors.name}</div>}
+                            <label htmlFor="name" className="form-label text-uppercase fw-bold small-label">{t('labels.name')}</label>
+                            <input type="text" className={`form-control${errors.name ? ' is-invalid' : ''}`} id="name" value={data.name} onChange={handleChange} />
+                            {errors.name && <div className="invalid-feedback d-block">{errors.name}</div>}
                         </div>
                         <div className="mb-3">
-                                <label htmlFor="email" className="form-label text-uppercase fw-bold small-label">Email address</label>
-                                <input type="text" className="form-control" id="email" value={data.email} onChange={handleChange} />
-                                {errors.email && <div className="invalid-feedback d-block">Error: {errors.email}</div>}
+                                <label htmlFor="email" className="form-label text-uppercase fw-bold small-label">{t('labels.email')}</label>
+                                <input type="text" className={`form-control${errors.email ? ' is-invalid' : ''}`} id="email" value={data.email} onChange={handleChange} />
+                                {errors.email && <div className="invalid-feedback d-block">{errors.email}</div>}
                             </div>
                             <div className="mb-3">
-                                <label htmlFor="password" className="form-label text-uppercase fw-bold small-label">Password</label>
-                                <input type="password" className="form-control" id="password" value={data.password} onChange={handleChange} />
-                                {errors.password && <div className="invalid-feedback d-block">Error: {errors.password}</div>}
+                                <label htmlFor="password" className="form-label text-uppercase fw-bold small-label">{t('labels.password')}</label>
+                                <input type="password" className={`form-control${errors.password ? ' is-invalid' : ''}`} id="password" value={data.password} onChange={handleChange} />
+                                {errors.password && <div className="invalid-feedback d-block">{errors.password}</div>}
                             </div>
                             <div className="mb-3">
-                                <label htmlFor="password_confirmation" className="form-label text-uppercase fw-bold small-label">Password (confirm)</label>
+                                <label htmlFor="password_confirmation" className="form-label text-uppercase fw-bold small-label">{t('labels.password_confirm')}</label>
                                 <input type="password" className="form-control" id="password_confirmation" value={data.password_confirmation} onChange={handleChange} />
                             </div>
-                            <button type="submit" className="btn btn-primary w-100 mt-1">Sign up</button>
+                            <button type="submit" className="btn btn-primary w-100 mt-1">{t('phrases.Create account')}</button>
                     </form>
                     <div className="d-flex justify-content-center">
-                        <small>Already have an account? <Link href={urls['login']}>Sign In</Link></small>
+                        <small>{t('phrases.Already have an account?')} <Link href={urls['login']}>{t('phrases.Sign in')}</Link></small>
                     </div>
                 </div>
             </div>

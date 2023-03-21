@@ -24,7 +24,7 @@ class AuthController extends Controller
     /**
      * @return InertiaResponse
      */
-    public function loginForm() : InertiaResponse
+    public function loginForm(Request $request) : InertiaResponse
     {
         return Inertia::render('Login', [
             'bs_col_class' => 'col-9 col-sm-7 col-md-5 col-lg-4 col-xl-4 col-xxl-3',
@@ -52,7 +52,7 @@ class AuthController extends Controller
         # Check for errors and return them
         if (!Auth::attempt($credentials, $remember)) {
             return redirect()->back()->withErrors([
-                'email' => 'These credentials do not match our records.'
+                'email' => __('auth.failed')
             ]);
         }
 
@@ -65,8 +65,9 @@ class AuthController extends Controller
      */
     public function registerForm() : InertiaResponse
     {
+
         return Inertia::render('Register', [
-            'bs_col_class' => 'col-9 col-sm-6 col-md-5 col-lg-4 col-xl-3',
+            'bs_col_class' => 'col-9 col-sm-7 col-md-5 col-lg-4 col-xl-4 col-xxl-3',
             'urls' => [
                 'login' => route('login'),
                 'register' => route('register')
@@ -94,16 +95,16 @@ class AuthController extends Controller
             'email' => 'required|email|unique:users',
             'password' => 'required|min:8|confirmed'
         ], [
-            'name.required' => 'A name is required',
-            'name.max' => 'A name should be a maximum 255 characters long',
+            'name.required' => __('auth.name.required'),
+            'name.max' => __('auth.name.max'),
 
-            'email.required' => 'An email is required',
-            'email.email' => 'An email has to be in email format',
-            'email.unique' => 'An email is already in our records',
+            'email.required' => __('auth.email.required'),
+            'email.email' => __('auth.email.email'),
+            'email.unique' => __('auth.email.unique'),
 
-            'password.required' => 'A password is required',
-            'password.min' => 'A password should be at least 8 characters long',
-            'password.confirmed' => 'A confirmation password does not match'
+            'password.required' => __('auth.password.required'),
+            'password.min' => __('auth.password.min'),
+            'password.confirmed' => __('auth.password.confirmed')
         ]);
 
         # if there are validation errors then return them
