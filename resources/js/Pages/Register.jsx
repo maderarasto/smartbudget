@@ -72,5 +72,5 @@ export default function Register({urls}) {
 }
 
 Register.layout = (page) => {
-    return <Layout children={page} title={page.props.title} bsColClass={page.props.bs_col_class} />
+    return <Layout children={page} title={page.props.title} bsColClass={page.props.bsColClass} />
 };

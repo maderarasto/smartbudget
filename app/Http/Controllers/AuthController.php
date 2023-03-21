@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
 use Inertia\Response as InertiaResponse;
@@ -26,12 +27,13 @@ class AuthController extends Controller
      */
     public function loginForm(Request $request) : InertiaResponse
     {
+        die(var_dump($request));
         return Inertia::render('Login', [
-            'title' => 'Sign in',
-            'bs_col_class' => 'col-9 col-sm-7 col-md-5 col-lg-4 col-xl-4 col-xxl-3',
+            'bsColClass' => 'col-9 col-sm-7 col-md-5 col-lg-4 col-xl-4 col-xxl-3',
             'urls' => [
                 'login' => route('login'),
-                'register' => route('register')
+                'register' => route('register'),
+                'recover-password' => route('recover-password')
             ]
         ]);
     }
@@ -68,8 +70,7 @@ class AuthController extends Controller
     {
 
         return Inertia::render('Register', [
-            'title' => 'Create account',
-            'bs_col_class' => 'col-9 col-sm-7 col-md-5 col-lg-4 col-xl-4 col-xxl-3',
+            'bsColClass' => 'col-9 col-sm-7 col-md-5 col-lg-4 col-xl-4 col-xxl-3',
             'urls' => [
                 'login' => route('login'),
                 'register' => route('register')
@@ -120,6 +121,43 @@ class AuthController extends Controller
 
         # Redirect user after creating user succeed.
         return redirect()->intended(route('login'));
+    }
+
+    public function recoverPasswordForm() : InertiaResponse
+    {
+        return Inertia::render('RecoverPassword', [
+            'bsColClass' => 'col-9 col-sm-7 col-md-5 col-lg-4 col-xl-4 col-xxl-3',
+            'urls' => [
+                'login' => route('login'),
+                'recover-password.submit' => route('recover-password.submit')
+            ]
+        ]);
+    }
+
+    public function recoverPassword(Request $request) : RedirectResponse
+    {
+        $inputData = $request->only([
+            'email'
+        ]);
+
+        $validator = Validator::make($inputData, [
+            'email' => 'required|email|exists:users',
+        ], [
+            'email.required' => __('auth.email.required'),
+            'email.email' => __('auth.email.email'),
+            'email.exists' => __('auth.email.exists'),
+        ]);
+
+        if ($validator->fails())
+        {
+            return redirect()->back()->withErrors($validator);
+        }
+
+        $status = Password::sendResetLink($inputData);
+
+        return $status !== Password::RESET_LINK_SENT ?
+            back()->withErrors(['email' => $status]) :
+            redirect()->route('login')->with(['recover_password' => $status]);
     }
 
     /**

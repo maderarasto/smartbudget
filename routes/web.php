@@ -27,6 +27,8 @@ Route::group([
         Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
         Route::get('/register', [AuthController::class, 'registerForm'])->name('register');
         Route::post('/register', [AuthController::class, 'register'])->name('register.submit');
+        Route::get('/recover-password', [AuthController::class, 'recoverPasswordForm'])->name('recover-password');
+        Route::post('/recover-password', [AuthController::class, 'recoverPassword'])->name('recover-password.submit');
     });
 
     Route::group(['middleware' => 'auth'], function () {
