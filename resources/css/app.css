@@ -8,15 +8,16 @@
 }
 
 .page {
-    /* Full height */
-    height: 100vh;
-    height: 100svh;
-
     display: flex;
     flex-direction: column;
+    /*justify-content: center;*/
+    /*align-items: center;*/
+    height: 100vh;
+    height: 100svh;
+}
 
-    justify-content: center;
-    align-items: center;
+.page-auth .card {
+    margin-top: 50%;
 }
 
 .page-index .title {

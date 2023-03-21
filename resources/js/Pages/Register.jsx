@@ -33,6 +33,10 @@ export default function Register({urls}) {
 
     return (
         <div className="page page-auth page-register">
+            {/*<div>*/}
+            {/*    <h1 className="title"><span className="text-primary">Smart</span>Budget</h1>*/}
+            {/*    <span className="subtitle">Manage your budget</span>*/}
+            {/*</div>*/}
             <div className="card w-100 border-0 shadow">
                 <div className="card-body">
                     <form className="mb-3" method="post" onSubmit={handleSubmit}>
