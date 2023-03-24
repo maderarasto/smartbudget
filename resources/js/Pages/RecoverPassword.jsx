@@ -3,7 +3,7 @@ import { useForm, Link } from '@inertiajs/react';
 import { useTranslation, Trans} from "react-i18next";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser, faLock } from '@fortawesome/free-solid-svg-icons'
+import {faUser, faLock, faCheck} from '@fortawesome/free-solid-svg-icons'
 
 import Layout from "./Layouts/Layout";
 
@@ -23,7 +23,7 @@ export default function RecoverPassword({urls}) {
     function handleSubmit(ev) {
         ev.preventDefault();
 
-        post(urls['recover-password.submit']);
+        post(urls['password.recover.submit']);
     }
 
     return (
@@ -43,7 +43,10 @@ export default function RecoverPassword({urls}) {
                             <input type="text" id="email" className={`form-control${errors.email ? ' is-invalid' : ''}`} placeholder={t('labels.email')} aria-label={t('labels.email')} aria-describedby="email" onChange={handleChange} />
                             {errors.email && <div className="invalid-feedback d-block">{errors.email}</div>}
                         </div>
-                        <button type="submit" className="btn btn-primary w-100 mt-1">{t('phrases.Send email')}</button>
+                        <button type="submit" className="btn btn-primary w-100 mt-1">
+                            <FontAwesomeIcon icon={faCheck} style={{marginRight: '0.5rem'}} color="white" />
+                            {t('phrases.Send email')}
+                        </button>
                     </form>
                     <div className="d-flex justify-content-center">
                         <small><Link href={urls['login']}>← {t('phrases.Return to back')}</Link></small>

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Repositories\Interfaces\UserRepositoryInterface;
+use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,13 +29,13 @@ class AuthController extends Controller
      */
     public function loginForm(Request $request) : InertiaResponse
     {
-        die(var_dump($request));
+//        die(var_dump($request));
         return Inertia::render('Login', [
             'bsColClass' => 'col-9 col-sm-7 col-md-5 col-lg-4 col-xl-4 col-xxl-3',
             'urls' => [
                 'login' => route('login'),
                 'register' => route('register'),
-                'recover-password' => route('recover-password')
+                'password.recover' => route('password.recover')
             ]
         ]);
     }
@@ -129,7 +131,7 @@ class AuthController extends Controller
             'bsColClass' => 'col-9 col-sm-7 col-md-5 col-lg-4 col-xl-4 col-xxl-3',
             'urls' => [
                 'login' => route('login'),
-                'recover-password.submit' => route('recover-password.submit')
+                'password.recover.submit' => route('password.recover.submit')
             ]
         ]);
     }
@@ -158,6 +160,63 @@ class AuthController extends Controller
         return $status !== Password::RESET_LINK_SENT ?
             back()->withErrors(['email' => $status]) :
             redirect()->route('login')->with(['recover_password' => $status]);
+    }
+
+    public function resetPasswordForm(Request $request) : InertiaResponse|RedirectResponse
+    {
+        $inputData = $request->only([
+            'token',
+            'email',
+        ]);
+
+        if (empty($inputData['token']) || empty($inputData['email']))
+        {
+            return redirect()->route('login');
+        }
+
+        return Inertia::render('ResetPassword', [
+            'bsColClass' => 'col-9 col-sm-7 col-md-5 col-lg-4 col-xl-4 col-xxl-3',
+            'urls' => [
+                'login' => route('login'),
+                'password.reset.submit' => route('password.reset.submit')
+            ]
+        ]);
+    }
+
+    public function resetPassword(Request $request) : RedirectResponse
+    {
+        $inputData = $request->only([
+            'token',
+            'email',
+            'password',
+            'password-confirmation'
+        ]);
+
+        $validator = Validator::make($inputData, [
+            'password' => 'required|min:8|confirmed'
+        ], [
+            'password.required' => __('auth.password.required'),
+            'password.min' => __('auth.password.min'),
+            'password.confirmed' => __('auth.password.confirmed')
+        ]);
+
+        if ($validator->fails())
+        {
+            return back()->withErrors($validator);
+        }
+
+        $status = Password::reset($inputData, function (User $user, string $password) {
+            $user->forceFill([
+                'password' => $password
+            ]);
+
+            $user->save();
+            event(new PasswordReset($user));
+        });
+
+        return $status === Password::PASSWORD_RESET
+            ? redirect()->route('login')->with('status', $status)
+            : back()->withErrors(['email' => [$status]]);
     }
 
     /**

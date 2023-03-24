@@ -3,7 +3,7 @@ import { useForm, Link } from '@inertiajs/react';
 import { useTranslation, Trans} from "react-i18next";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser, faLock } from '@fortawesome/free-solid-svg-icons'
+import { faUser, faLock, faSignIn } from '@fortawesome/free-solid-svg-icons'
 
 import Layout from "./Layouts/Layout";
 
@@ -68,9 +68,12 @@ export default function Login({urls}) {
                                     {t('labels.remember_me')}
                                 </label>
                             </div>
-                            <Link href={urls['recover-password']}>{t('phrases.Forgot password?')}</Link>
+                            <Link href={urls['password.recover']}>{t('phrases.Forgot password?')}</Link>
                         </div>
-                        <button type="submit" className="btn btn-primary w-100 mt-1">{t('phrases.Sign in')}</button>
+                        <button type="submit" className="btn btn-primary w-100 mt-1">
+                            <FontAwesomeIcon icon={faSignIn} style={{marginRight: '0.5rem'}} color="white" />
+                            {t('phrases.Sign in')}
+                        </button>
                     </form>
                     <div className="d-flex justify-content-center">
                         <small>{t('phrases.Don\'t have an account?')} <Link href={urls['register']}>{t('phrases.Create account')}</Link></small>
