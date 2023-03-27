@@ -3,9 +3,9 @@ import { useForm, Link } from '@inertiajs/react';
 import { useTranslation, Trans} from "react-i18next";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser, faLock } from '@fortawesome/free-solid-svg-icons'
+import { faUser, faLock, faSignIn } from '@fortawesome/free-solid-svg-icons'
 
-import Layout from "./Layout";
+import Layout from "./Layouts/Layout";
 
 export default function Login({urls}) {
     const {t} = useTranslation();
@@ -52,7 +52,7 @@ export default function Login({urls}) {
                             <span className="input-group-text" id="email">
                                 <FontAwesomeIcon icon={faUser} />
                             </span>
-                            <input type="text" id="email" className="form-control" placeholder={t('labels.email')} aria-label={t('labels.email')} aria-describedby="email" onChange={handleChange} />
+                            <input type="text" id="email" className={`form-control${errors.email ? ' is-invalid' : ''}`} placeholder={t('labels.email')} aria-label={t('labels.email')} aria-describedby="email" onChange={handleChange} />
                             {errors.email && <div className="invalid-feedback d-block">{errors.email}</div>}
                         </div>
                         <div className="input-group mb-3">
@@ -68,9 +68,12 @@ export default function Login({urls}) {
                                     {t('labels.remember_me')}
                                 </label>
                             </div>
-                            <Link href="#">{t('phrases.Forgot password?')}</Link>
+                            <Link href={urls['password.recover']}>{t('phrases.Forgot password?')}</Link>
                         </div>
-                        <button type="submit" className="btn btn-primary w-100 mt-1">{t('phrases.Sign in')}</button>
+                        <button type="submit" className="btn btn-primary w-100 mt-1">
+                            <FontAwesomeIcon icon={faSignIn} style={{marginRight: '0.5rem'}} color="white" />
+                            {t('phrases.Sign in')}
+                        </button>
                     </form>
                     <div className="d-flex justify-content-center">
                         <small>{t('phrases.Don\'t have an account?')} <Link href={urls['register']}>{t('phrases.Create account')}</Link></small>
@@ -82,6 +85,6 @@ export default function Login({urls}) {
 }
 
 Login.layout = (page) => {
-    return <Layout children={page} bsColClass={page.props.bs_col_class} />
+    return <Layout children={page} title={page.props.title} bsColClass={page.props.bsColClass} />
 };
 

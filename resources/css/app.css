@@ -20,6 +20,11 @@
     margin-top: 50%;
 }
 
+.page-index {
+    align-items: center;
+    justify-content: center;
+}
+
 .page-index .title {
     margin-bottom: 0;
     font-weight: bold;

@@ -9,8 +9,10 @@ class FinancesController extends Controller
     public function __construct() {
         $this->middleware('auth');
     }
- 
+
     public function index() {
-        return Inertia::render('Finances');
-    } 
+        return Inertia::render('Finances', [
+            'title' => 'Overview'
+        ]);
+    }
 }

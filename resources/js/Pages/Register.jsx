@@ -2,7 +2,9 @@ import React from 'react';
 import {useForm, Link} from '@inertiajs/react';
 import {useTranslation} from "react-i18next";
 
-import Layout from "./Layout";
+import Layout from "./Layouts/Layout";
+import {faCheck} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 export default function Register({urls}) {
     const {t} = useTranslation();
@@ -60,7 +62,10 @@ export default function Register({urls}) {
                                 <label htmlFor="password_confirmation" className="form-label text-uppercase fw-bold small-label">{t('labels.password_confirm')}</label>
                                 <input type="password" className="form-control" id="password_confirmation" value={data.password_confirmation} onChange={handleChange} />
                             </div>
-                            <button type="submit" className="btn btn-primary w-100 mt-1">{t('phrases.Create account')}</button>
+                            <button type="submit" className="btn btn-primary w-100 mt-1">
+                                <FontAwesomeIcon icon={faCheck} style={{marginRight: '0.5rem'}} color="white" />
+                                {t('phrases.Create account')}
+                            </button>
                     </form>
                     <div className="d-flex justify-content-center">
                         <small>{t('phrases.Already have an account?')} <Link href={urls['login']}>{t('phrases.Sign in')}</Link></small>
@@ -72,5 +77,5 @@ export default function Register({urls}) {
 }
 
 Register.layout = (page) => {
-    return <Layout children={page} bsColClass={page.props.bs_col_class} />
+    return <Layout children={page} title={page.props.title} bsColClass={page.props.bsColClass} />
 };

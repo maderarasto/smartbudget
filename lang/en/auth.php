@@ -20,7 +20,8 @@ return [
 
     'email.required' => 'An email is required',
     'email.email' => 'An email has to be in email format',
-    'email.unique' => 'An email is already in our records',
+    'email.unique' => 'This email is already in our records',
+    'email.exists' => 'This email does not exist in our records',
 
     'password.required' => 'A password is required',
     'password.min' => 'A password should be at least 8 characters long',

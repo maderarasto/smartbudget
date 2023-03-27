@@ -20,7 +20,8 @@ return [
 
     'email.required' => 'Email je povinný',
     'email.email' => 'E-mail musí byť vo formáte e-mailu',
-    'email.unique' => 'E-mail už existuje v našich záznamoch',
+    'email.unique' => 'Tento e-mail už existuje v našich záznamoch',
+    'email.exists' => 'Tento e-mail neexistuje v našich záznamoch',
 
     'password.required' => 'Heslo je povinné',
     'password.min' => 'Heslo by malo mať aspoň 8 znakov',
