@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
 use Inertia\Response as InertiaResponse;
@@ -29,9 +30,14 @@ class AuthController extends Controller
      */
     public function loginForm(Request $request) : InertiaResponse
     {
-//        die(var_dump($request));
+        if (Session::has('last_notification')) {
+            $notification = Session::get('last_notification');
+            Session::remove('last_notification');
+        }
+
         return Inertia::render('Login', [
             'bsColClass' => 'col-9 col-sm-7 col-md-5 col-lg-4 col-xl-4 col-xxl-3',
+            'notification' => $notification ?? null,
             'urls' => [
                 'login' => route('login'),
                 'register' => route('register'),
@@ -70,7 +76,6 @@ class AuthController extends Controller
      */
     public function registerForm() : InertiaResponse
     {
-
         return Inertia::render('Register', [
             'bsColClass' => 'col-9 col-sm-7 col-md-5 col-lg-4 col-xl-4 col-xxl-3',
             'urls' => [
@@ -100,16 +105,16 @@ class AuthController extends Controller
             'email' => 'required|email|unique:users',
             'password' => 'required|min:8|confirmed'
         ], [
-            'name.required' => __('auth.name.required'),
-            'name.max' => __('auth.name.max'),
+            'name.required' => __('auth.rules.name.required'),
+            'name.max' => __('auth.rules.name.max'),
 
-            'email.required' => __('auth.email.required'),
-            'email.email' => __('auth.email.email'),
-            'email.unique' => __('auth.email.unique'),
+            'email.required' => __('auth.rules.email.required'),
+            'email.email' => __('auth.rules.email.email'),
+            'email.unique' => __('auth.rules.email.unique'),
 
-            'password.required' => __('auth.password.required'),
-            'password.min' => __('auth.password.min'),
-            'password.confirmed' => __('auth.password.confirmed')
+            'password.required' => __('auth.rules.password.required'),
+            'password.min' => __('auth.rules.password.min'),
+            'password.confirmed' => __('auth.rules.password.confirmed')
         ]);
 
         # if there are validation errors then return them
@@ -120,6 +125,11 @@ class AuthController extends Controller
 
         # Create user with given input
         $this->userRepository->create($inputData);
+        Session::put('last_notification', [
+            'type' => 'success',
+            'title' => __('auth.notification.register.title'),
+            'text' => __('auth.notification.register.text')
+        ]);
 
         # Redirect user after creating user succeed.
         return redirect()->intended(route('login'));
@@ -145,9 +155,9 @@ class AuthController extends Controller
         $validator = Validator::make($inputData, [
             'email' => 'required|email|exists:users',
         ], [
-            'email.required' => __('auth.email.required'),
-            'email.email' => __('auth.email.email'),
-            'email.exists' => __('auth.email.exists'),
+            'email.required' => __('auth.rules.email.required'),
+            'email.email' => __('auth.rules.email.email'),
+            'email.exists' => __('auth.rules.email.exists'),
         ]);
 
         if ($validator->fails())
@@ -156,6 +166,11 @@ class AuthController extends Controller
         }
 
         $status = Password::sendResetLink($inputData);
+        Session::put('last_notification', [
+            'type' => 'success',
+            'title' => __('auth.notification.recover_password.title'),
+            'text' => __('auth.notification.recover_password.text')
+        ]);
 
         return $status !== Password::RESET_LINK_SENT ?
             back()->withErrors(['email' => $status]) :
@@ -189,15 +204,15 @@ class AuthController extends Controller
             'token',
             'email',
             'password',
-            'password-confirmation'
+            'password_confirmation'
         ]);
 
         $validator = Validator::make($inputData, [
             'password' => 'required|min:8|confirmed'
         ], [
-            'password.required' => __('auth.password.required'),
-            'password.min' => __('auth.password.min'),
-            'password.confirmed' => __('auth.password.confirmed')
+            'password.required' => __('auth.rules.password.required'),
+            'password.min' => __('auth.rules.password.min'),
+            'password.confirmed' => __('auth.rules.password.confirmed')
         ]);
 
         if ($validator->fails())
@@ -213,6 +228,12 @@ class AuthController extends Controller
             $user->save();
             event(new PasswordReset($user));
         });
+
+        Session::put('last_notification', [
+            'type' => 'success',
+            'title' => __('auth.notification.reset_password.title'),
+            'text' => __('auth.notification.reset_password.text')
+        ]);
 
         return $status === Password::PASSWORD_RESET
             ? redirect()->route('login')->with('status', $status)

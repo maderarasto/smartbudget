@@ -3,6 +3,7 @@
 @import url('./theme.css');
 
 #app {
+    position: relative;
     width: 100%;
     background-color: whitesmoke;
 }
@@ -10,8 +11,6 @@
 .page {
     display: flex;
     flex-direction: column;
-    /*justify-content: center;*/
-    /*align-items: center;*/
     height: 100vh;
     height: 100svh;
 }
@@ -36,4 +35,32 @@
     font-size: 0.8rem;
     letter-spacing: 0.45rem;
     color: #666;
+}
+
+/* AlertMessage Component */
+.alert-message {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+
+    position: absolute;
+    inset: 3rem auto auto 50%;
+    transform: translateX(-50%);
+
+    min-width: 600px;
+    max-width: 600px;
+
+    animation: 1s show-notification;
+}
+
+@keyframes show-notification {
+    from {
+        top: 0;
+        opacity: 0;
+    }
+
+    to {
+        top: 3rem;
+        opacity: 1;
+    }
 }
