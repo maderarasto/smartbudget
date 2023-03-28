@@ -15,15 +15,40 @@ return [
 
     'failed' => 'Tieto údaje sa nezhodujú s našimi záznamami.',
 
-    'name.required' => 'Meno je povinné',
-    'name.max' => 'Meno by malo mať maximálne 255 znakov',
+    'rules' => [
+        'name' => [
+            'required' => 'Meno je povinné',
+            'max' => 'Meno by malo mať maximálne 255 znakov',
+        ],
 
-    'email.required' => 'Email je povinný',
-    'email.email' => 'E-mail musí byť vo formáte e-mailu',
-    'email.unique' => 'Tento e-mail už existuje v našich záznamoch',
-    'email.exists' => 'Tento e-mail neexistuje v našich záznamoch',
+        'email' => [
+            'required' => 'Email je povinný',
+            'email' => 'E-mail musí byť vo formáte e-mailu',
+            'unique' => 'Tento e-mail už existuje v našich záznamoch',
+            'exists' => 'Tento e-mail neexistuje v našich záznamoch',
+        ],
 
-    'password.required' => 'Heslo je povinné',
-    'password.min' => 'Heslo by malo mať aspoň 8 znakov',
-    'password.confirmed' => 'Potvrdzovacie heslo sa nezhoduje',
+        'password' => [
+            'required' => 'Heslo je povinné',
+            'min' => 'Heslo by malo mať aspoň 8 znakov',
+            'confirmed' => 'Potvrdzovacie heslo sa nezhoduje',
+        ],
+    ],
+
+    'notification' => [
+        'register' => [
+            'title' => 'Registrácia bola úspešná',
+            'text' => 'Váš účet bol úspešne vytvorený a teraz sa môžete prihlásiť.',
+        ],
+
+        'recover_password' => [
+            'title' => 'Odoslanie e-mailu bolo úspešné',
+            'text' => 'E-mail s URL na obnovenie hesla bol úspešne odoslaný.'
+        ],
+
+        'reset_password' => [
+            'title' => 'Zmena hesla bola úspešná',
+            'text' => 'Vaše heslo bolo úspešne zmenené a teraz sa môžete prihlásiť.'
+        ]
+    ]
 ];

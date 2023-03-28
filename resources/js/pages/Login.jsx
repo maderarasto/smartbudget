@@ -3,9 +3,10 @@ import { useForm, Link } from '@inertiajs/react';
 import { useTranslation, Trans} from "react-i18next";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser, faLock, faSignIn } from '@fortawesome/free-solid-svg-icons'
+import { faUser, faLock, faSignIn} from '@fortawesome/free-solid-svg-icons'
 
-import Layout from "./Layouts/Layout";
+import Layout from './Layouts/Layout';
+import AlertMessage from '../components/AlertMessage';
 
 export default function Login({urls}) {
     const {t} = useTranslation();
@@ -85,6 +86,6 @@ export default function Login({urls}) {
 }
 
 Login.layout = (page) => {
-    return <Layout children={page} title={page.props.title} bsColClass={page.props.bsColClass} />
+    return <Layout children={page} title={page.props.title} bsColClass={page.props.bsColClass} notification={page.props.notification} />
 };
 

@@ -30,8 +30,7 @@ export default function ResetPassword({urls}) {
 
     function handleSubmit(ev) {
         ev.preventDefault();
-        console.log(data);
-        //post(urls['password.reset.submit']);
+        post(urls['password.reset.submit']);
     }
 
     return (
