@@ -2,9 +2,11 @@ import React from 'react';
 import {useForm, Link} from '@inertiajs/react';
 import {useTranslation} from "react-i18next";
 
-import Layout from "./Layouts/Layout";
 import {faCheck} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+
+import Layout from "./Layouts/Layout";
+import logo from "../../img/smartbudget_logo.png";
 
 export default function Register({urls}) {
     const {t} = useTranslation();
@@ -35,10 +37,9 @@ export default function Register({urls}) {
 
     return (
         <div className="page page-auth page-register">
-            {/*<div>*/}
-            {/*    <h1 className="title"><span className="text-primary">Smart</span>Budget</h1>*/}
-            {/*    <span className="subtitle">Manage your budget</span>*/}
-            {/*</div>*/}
+            <div className="logo">
+                <img src={logo} alt="SmartBudget logo" />
+            </div>
             <div className="card w-100 border-0 shadow">
                 <div className="card-body">
                     <form className="mb-3" method="post" onSubmit={handleSubmit}>

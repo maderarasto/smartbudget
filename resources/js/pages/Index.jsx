@@ -3,14 +3,14 @@ import { Link } from '@inertiajs/react';
 import {useTranslation} from "react-i18next";
 
 import Layout from './Layouts/Layout';
+import logo from '../../img/smartbudget_logo.png';
 
 function Index() {
     const {t} = useTranslation();
 
     return (
         <div className="page page-index">
-            <h1 className="title"><span className="text-primary">Smart</span>Budget</h1>
-            <span className="subtitle">Manage your budget</span>
+            <img src={logo} alt="SmartBudget logo" />
             <div className="buttons">
                 <Link href="/finances" as="button" type="button" className="btn btn-primary btn-sm mt-4">
                     {t('phrases.Open app')}
