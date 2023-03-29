@@ -1,6 +1,10 @@
 import {useState, useEffect} from 'react';
 
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faBasketShopping, faHouse, faSoap} from "@fortawesome/free-solid-svg-icons";
+
 import MenuSheetItem from './MenuSheetItem';
+import MenuOverviewItem from './MenuOverviewItem';
 import logo from "../../img/smartbudget_logo.png";
 
 export default function Sidebar() {
@@ -47,6 +51,11 @@ export default function Sidebar() {
             </div>
             <div className="sidebar__overview">
                 <small className="fw-bold text-uppercase text-secondary">Monthly overview</small>
+                <div className="overview-list">
+                    <MenuOverviewItem name="Groceries" icon={faBasketShopping} budget={150} sum={123.5} currency="EUR" />
+                    <MenuOverviewItem name="Household" icon={faHouse} budget={50} sum={11.2} currency="EUR" />
+                    <MenuOverviewItem name="Hygiene" icon={faSoap} budget={50} sum={33.9} currency="EUR" />
+                </div>
             </div>
             <div className="sidebar__user"></div>
         </div>

@@ -101,7 +101,12 @@
     margin-top: 8px;
 }
 
-.sidebar__sheets .sheets-list__item {
+.sidebar__overview .overview-list {
+    margin-top: 8px;
+}
+
+/** MenuSheetsItem component */
+.menu-sheets-item {
     display: flex;
     align-items: center;
 
@@ -112,21 +117,21 @@
     cursor: pointer;
 }
 
-.sidebar__sheets .sheets-list__item:hover {
+.menu-sheets-item:hover {
     background-color: var(--primary-highlight);
 }
 
-.sidebar__sheets .sheets-list__item > span {
+.menu-sheets-item > span {
     margin-left: 16px;
 }
 
 
-.sidebar__sheets .sheets-list__item.active {
+.menu-sheets-item.active {
     background-color: var(--primary);
     color: white;
 }
 
-.sidebar__sheets .sheets-list__item.active > span {
+.menu-sheets-item.active > span {
     color: white;
 }
 
@@ -140,4 +145,40 @@
 
 .sidebar__user {
     height: 84px;
+}
+
+/** MenuOverviewItem component */
+.menu-overview-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    height: 30px;
+    margin-inline: -16px;
+    padding-inline: 16px;
+
+    cursor: pointer;
+}
+
+.menu-overview-item__name{
+    flex: 0.5;
+}
+
+.menu-overview-item__name > span {
+    margin-left: 8px;
+}
+
+.menu-overview-item__progress {
+    flex: 0.2
+}
+
+.menu-overview-item__progress .progress {
+    width: 60px;
+    height: 10px;
+    border-radius: 0;
+}
+
+.menu-overview-item__sum {
+    flex: 0.3;
+    text-align: right;
 }

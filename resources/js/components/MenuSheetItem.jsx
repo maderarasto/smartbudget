@@ -3,7 +3,7 @@ import {faFileLines} from '@fortawesome/free-regular-svg-icons';
 
 export default function MenuSheetItem({name, active, onClick}) {
     function getClassName() {
-        return `sheets-list__item${active ? ' active' : ''}`;
+        return `menu-sheets-item${active ? ' active' : ''}`;
     }
 
     return (
