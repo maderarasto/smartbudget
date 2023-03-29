@@ -1,12 +1,12 @@
 import React from 'react'
 import { useForm, Link } from '@inertiajs/react';
-import { useTranslation, Trans} from "react-i18next";
+import { useTranslation} from "react-i18next";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faLock, faSignIn} from '@fortawesome/free-solid-svg-icons'
 
 import Layout from './Layouts/Layout';
-import AlertMessage from '../components/AlertMessage';
+import logo from '../../img/smartbudget_logo.png';
 
 export default function Login({urls}) {
     const {t} = useTranslation();
@@ -41,10 +41,9 @@ export default function Login({urls}) {
 
     return (
         <div className="page page-auth page-login">
-            {/*<div>*/}
-            {/*    <h1 className="title"><span className="text-primary">Smart</span>Budget</h1>*/}
-            {/*    <span className="subtitle">Manage your budget</span>*/}
-            {/*</div>*/}
+            <div className="logo">
+                <img src={logo} alt="SmartBudget logo" />
+            </div>
             <div className="card w-100 border-0 shadow">
                 <div className="card-body">
                     <h3 className="text-center fw-bold mt-2 mb-5">{t('titles.Sign in')}</h3>

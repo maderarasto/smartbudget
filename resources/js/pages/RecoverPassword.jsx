@@ -1,15 +1,16 @@
 import React from 'react'
 import { useForm, Link } from '@inertiajs/react';
-import { useTranslation, Trans} from "react-i18next";
+import { useTranslation} from "react-i18next";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faUser, faLock, faCheck} from '@fortawesome/free-solid-svg-icons'
+import {faUser, faCheck} from '@fortawesome/free-solid-svg-icons'
 
 import Layout from "./Layouts/Layout";
+import logo from "../../img/smartbudget_logo.png";
 
 export default function RecoverPassword({urls}) {
     const {t} = useTranslation();
-    const { data, setData, post, reset, errors} = useForm({
+    const { setData, post, errors} = useForm({
         email: ''
     });
 
@@ -28,10 +29,9 @@ export default function RecoverPassword({urls}) {
 
     return (
         <div className="page page-auth page-recover-password">
-            {/*<div>*/}
-            {/*    <h1 className="title"><span className="text-primary">Smart</span>Budget</h1>*/}
-            {/*    <span className="subtitle">Manage your budget</span>*/}
-            {/*</div>*/}
+            <div className="logo">
+                <img src={logo} alt="SmartBudget logo" />
+            </div>
             <div className="card w-100 border-0 shadow">
                 <div className="card-body">
                     <h3 className="text-center fw-bold mt-2 mb-5">{t('titles.Recover password')}</h3>

@@ -6,8 +6,10 @@ body {
     padding: 0;
 }
 
-.row {
+.row,
+.row>* {
     margin-inline: 0;
+    padding-inline: 0;
 }
 
 .card,

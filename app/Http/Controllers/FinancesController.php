@@ -12,7 +12,7 @@ class FinancesController extends Controller
 
     public function index() {
         return Inertia::render('Finances', [
-            'title' => 'Overview'
+            'bsColClass' => 'col-12'
         ]);
     }
 }
