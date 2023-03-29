@@ -91,18 +91,36 @@
     height: 150px;
 }
 
-.sidebar__sheets {
-    flex: 1;
+.sidebar__section {
     padding: 8px 16px;
     border-bottom: 1px solid lightgray;
 }
 
-.sidebar__sheets .sheets-list {
+.sidebar__section > .title {
+    font-weight: bold;
+    text-transform: uppercase;
+    color: var(--secondary)
+}
+
+.sidebar__section.sheets {
+    flex: 1;
+}
+
+.sidebar__section.sheets .sheets-list {
     margin-top: 8px;
 }
 
-.sidebar__overview .overview-list {
+.sidebar__section.overview {
+    height: 500px;
+}
+
+.sidebar__section.overview .overview-list {
     margin-top: 8px;
+}
+
+.sidebar__user {
+    height: 64px;
+    padding: 16px;
 }
 
 /** MenuSheetsItem component */
@@ -133,18 +151,6 @@
 
 .menu-sheets-item.active > span {
     color: white;
-}
-
-
-
-.sidebar__overview {
-    height: 500px;
-    padding: 8px 16px;
-    border-bottom: 1px solid lightgray;
-}
-
-.sidebar__user {
-    height: 84px;
 }
 
 /** MenuOverviewItem component */
@@ -181,4 +187,64 @@
 .menu-overview-item__sum {
     flex: 0.3;
     text-align: right;
+}
+
+/** UserPanel component **/
+.user-panel {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.user-panel__photo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 0.1;
+
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+
+    background-color: var(--primary);
+    cursor: pointer;
+}
+
+.user-panel__photo:hover {
+    background-color: var(--primary-highlight);
+}
+
+.user-panel__photo > span {
+    font-weight: 600;
+    font-size: 16px;
+    color: white;
+}
+
+.user-panel__details {
+    flex: 0.8;
+    margin-left: 16px;
+}
+
+.user-panel__details-name {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.user-panel__details-email {
+    font-size: 12px;
+    line-height: 12px;
+    color: var(--secondary);
+}
+
+.user-panel__action {
+    flex: 0.1
+}
+.user-panel__action > svg {
+    color: var(--secondary);
+    cursor: pointer;
+}
+
+
+.user-panel__action > svg:hover {
+    color: var(--secondary-highlight);
 }
