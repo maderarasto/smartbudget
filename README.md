@@ -5,9 +5,14 @@ Web application for managing your budget. Covering: PHP, Laravel, Intertia.js, R
 - added functionality and page with signing in with email and password
 - added functionality and page with creating an account
 - added functionality and page with sending url for resetting password via email
-- added functionality and page with setting up a new password 
+- added functionality and page with setting up a new password
+- added sidebar component with budgets sheets and monthly overview sections
 
 ###  In progress
-- sidebar with budget sheets, short monthly overview and information about current user
+- nothing for now
 
-![Animation of current state of project](status.gif "Animation of current state of project")
+### Authentification
+![Authentication showcase](.github/images/auth.gif "Authentication showcase")
+
+### Sidebar
+![Sidebar showcase](.github/images/sidebar.gif "Sidebar showcase")
