@@ -14,5 +14,5 @@ Web application for managing your budget. Covering: PHP, Laravel, Intertia.js, R
 ### Authentification
 ![Authentication showcase](.github/images/auth.gif "Authentication showcase")
 
-### Sidebar
-![Sidebar showcase](.github/images/sidebar.gif "Sidebar showcase")
+### Sidebar + Expense table
+![SmartBudget showcase](.github/images/smartbudget.gif "SmartBudget showcase")
