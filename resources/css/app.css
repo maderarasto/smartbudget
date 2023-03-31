@@ -40,7 +40,26 @@
 }
 
 .page-finances__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     flex: 1;
+}
+
+.page-finances__content .content-title {
+    width: 1150px;
+    margin-bottom: 2rem;
+}
+
+.page-finances__content .content-title > small {
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #6f6f6f;
+}
+
+.page-finances__content .content-title > h1{
+    align-self: flex-start;
 }
 
 /* AlertMessage Component */
@@ -247,4 +266,106 @@
 
 .user-panel__action > svg:hover {
     color: var(--secondary-highlight);
+}
+
+
+/**  ExpenseTable component */
+.expense-table {
+    min-height: 835px;
+    background-color: white;
+}
+
+.expense-table__toolbar {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 1em;
+    background-color: whitesmoke;
+}
+
+.expense-table__toolbar .btn-add-expense {
+    background-color: var(--primary);
+    color: white;
+}
+
+.expense-table__toolbar .btn-add-expense > span {
+    margin-left: 0.5em;
+    color: white;
+}
+
+.expense-table__toolbar .input-with-icon {
+    position: relative;
+}
+
+.expense-table__toolbar .input-with-icon > svg {
+    position: absolute;
+    inset: 50% 16px auto auto;
+    transform: translateY(-50%);
+    color: #6f6f6f;
+}
+
+.expense-table__toolbar .input-with-icon input {
+    width: 250px;
+    padding-right: 50px;
+}
+
+.expense-table__toolbar:has(.input-with-icon input:focus) svg[data-icon="magnifying-glass"] {
+    color: var(--black) !important;
+}
+
+.expense-table .table {
+    border: 1px solid #d6d6d6;
+    margin-bottom: 0;
+}
+
+.expense-table .table thead > * > * {
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    background-color: #eee;
+}
+
+.expense-table .table tbody > * > * {
+    border-width: 0;
+}
+
+.expense-table .table tbody > * > th {
+    vertical-align: middle;
+    font-size: 14px;
+}
+
+.expense-table .table tbody > *:nth-child(odd) > * {
+    background-color: white;
+}
+
+.expense-table .table tbody > *:nth-child(even) > * {
+    background-color: #f5f5f5;
+}
+
+.expense-table__footer {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 1em;
+    background-color: whitesmoke;
+}
+
+.expense-table__footer .table-paginator {
+    display: flex;
+}
+
+.expense-table__footer .table-paginator > button {
+    background-color: var(--primary);
+    color: white;
+}
+
+.expense-table__footer .table-paginator__page {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+
+    padding-inline: 1rem;
+    pointer-events: none;
+
+    font-weight: 500;
+    text-transform: uppercase;
+    color: var(--black) !important;
 }
