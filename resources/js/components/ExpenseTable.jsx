@@ -1,6 +1,6 @@
 import React from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faAngleLeft, faAngleRight, faMagnifyingGlass, faPlus} from "@fortawesome/free-solid-svg-icons";
+import {faAngleLeft, faAngleRight, faMagnifyingGlass, faPlus, faPlusCircle} from "@fortawesome/free-solid-svg-icons";
 
 export default function ExpenseTable({columns, data, pagination, total}) {
     function renderTableHeader({key, label, style}) {
@@ -33,7 +33,7 @@ export default function ExpenseTable({columns, data, pagination, total}) {
     return (
         <div className="expense-table">
             <div className="expense-table__toolbar">
-                <button className="btn btn-add-expense">
+                <button className="btn">
                     <FontAwesomeIcon icon={faPlus} />
                     <span>Add new expense</span>
                 </button>
@@ -45,27 +45,40 @@ export default function ExpenseTable({columns, data, pagination, total}) {
                     </div>
                 </form>
             </div>
-            <table className="table">
-                <thead>
-                    <tr>{columns.map(column => renderTableHeader(column))}</tr>
-                </thead>
-                <tbody>
+            <div className="expense-table__table">
                 {
-                    data.map(expenseItem => (
-                        <tr key={expenseItem.id}>
-                            {columns.map(column => renderTableCell(expenseItem, column))}
-                        </tr>
-                    ))
+                    data.length === 0 ? (
+                        <div className="table-default-message">
+                            <FontAwesomeIcon icon={faPlusCircle} />
+                            <h3>No expenses yet</h3>
+                        </div>
+                    ) : ''
                 }
-                </tbody>
-            </table>
-
+                <table className="table">
+                    <thead>
+                        <tr>{columns.map(column => renderTableHeader(column))}</tr>
+                    </thead>
+                    <tbody>
+                    {
+                        data.map(expenseItem => (
+                            <tr key={expenseItem.id}>
+                                {
+                                    columns.map(column => renderTableCell(expenseItem, column))
+                                }
+                            </tr>
+                        ))
+                    }
+                    </tbody>
+                </table>
+            </div>
             <div className="expense-table__footer">
                 <div className="table-paginator">
                     <button className="btn btn-sm">
                         <FontAwesomeIcon icon={faAngleLeft} />
                     </button>
-                    <div className="table-paginator__page btn btn-sm">1 of 10</div>
+                    <div className="table-paginator__page btn btn-sm">
+                        1 of 10
+                    </div>
                     <button className="btn btn-sm">
                         <FontAwesomeIcon icon={faAngleRight} />
                     </button>

@@ -271,24 +271,26 @@
 
 /**  ExpenseTable component */
 .expense-table {
-    min-height: 835px;
-    background-color: white;
+    display: flex;
+    flex-direction: column;
 }
 
 .expense-table__toolbar {
     display: flex;
     justify-content: space-between;
-    padding-bottom: 1em;
-    background-color: whitesmoke;
+    margin-bottom: 1em;
 }
 
-.expense-table__toolbar .btn-add-expense {
+.expense-table__toolbar > button {
     background-color: var(--primary);
+}
+
+.expense-table__toolbar > button > svg {
+    margin-right: 1rem;
     color: white;
 }
 
-.expense-table__toolbar .btn-add-expense > span {
-    margin-left: 0.5em;
+.expense-table__toolbar > button > span {
     color: white;
 }
 
@@ -296,10 +298,11 @@
     position: relative;
 }
 
-.expense-table__toolbar .input-with-icon > svg {
+.expense-table__toolbar .input-with-icon  > svg {
     position: absolute;
     inset: 50% 16px auto auto;
     transform: translateY(-50%);
+
     color: #6f6f6f;
 }
 
@@ -312,40 +315,64 @@
     color: var(--black) !important;
 }
 
-.expense-table .table {
+.expense-table__table {
+    min-height: 440px;
+    max-height: 840px;
     border: 1px solid #d6d6d6;
+    /*background-color: white;*/
+}
+
+.expense-table__table .table {
+    position: relative;
     margin-bottom: 0;
 }
 
-.expense-table .table thead > * > * {
+.expense-table__table .table thead > * > * {
     font-size: 14px;
     font-weight: bold;
     text-transform: uppercase;
     background-color: #eee;
 }
 
-.expense-table .table tbody > * > * {
+.expense-table__table tbody > * > *  {
     border-width: 0;
 }
 
-.expense-table .table tbody > * > th {
+.expense-table__table tbody > * > th {
     vertical-align: middle;
     font-size: 14px;
 }
 
-.expense-table .table tbody > *:nth-child(odd) > * {
+.expense-table__table tbody > *:nth-child(odd) > * {
     background-color: white;
 }
 
-.expense-table .table tbody > *:nth-child(even) > * {
+.expense-table__table tbody > *:nth-child(even) > * {
     background-color: #f5f5f5;
+}
+
+.expense-table__table .table-default-message {
+    position: absolute;
+    inset: 50% auto auto 50%;
+    transform: translate(25%, -25%);
+    text-align: center;
+}
+
+.expense-table__table .table-default-message svg {
+    margin: 2rem;
+    font-size: 96px;
+    color: #6f6f6f;
+}
+
+.expense-table__table .table-default-message h3 {
+    color: #6f6f6f;
 }
 
 .expense-table__footer {
     display: flex;
     justify-content: flex-end;
-    padding-top: 1em;
-    background-color: whitesmoke;
+    width: 100%;
+    margin-top: 1em;
 }
 
 .expense-table__footer .table-paginator {
@@ -360,12 +387,13 @@
 .expense-table__footer .table-paginator__page {
     display: flex;
     justify-content: center;
-    align-self: center;
+    align-items:center;
 
     padding-inline: 1rem;
     pointer-events: none;
 
     font-weight: 500;
     text-transform: uppercase;
-    color: var(--black) !important;
+    color: var(--black);
 }
+
