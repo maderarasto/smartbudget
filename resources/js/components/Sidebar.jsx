@@ -7,9 +7,8 @@ import UserPanel from './UserPanel';
 
 import logo from '../../img/smartbudget_logo.png';
 
-export default function Sidebar() {
+export default function Sidebar({user}) {
     const [budgetSheets, setBudgetSheets] = useState([]);
-    const [user, setUser] = useState(null);
 
     useEffect(() => {
         setBudgetSheets([
@@ -18,11 +17,6 @@ export default function Sidebar() {
             { name: 'July 2023', active: false },
             { name: 'June 2023', active: false },
         ]);
-
-        setUser({
-            name: 'Rastislav',
-            email: 'maderarasto@gmail.com'
-        });
     }, []);
 
     function handleSheetItemClick(sheetIndex) {
