@@ -6,6 +6,7 @@ const en = {
             "Recover password": 'Recover password',
             "Reset password": 'Reset password',
             "Overview": 'Overview',
+            "Budget sheet": 'Budget sheet',
         },
 
         labels: {
@@ -28,7 +29,31 @@ const en = {
             "Create account": 'Create account',
             "Send email": 'Send email',
             "Reset password": 'Reset password',
-            "Return to back": 'Return to back'
+            "Return to back": 'Return to back',
+            "Your budget sheets": 'Your budget sheets',
+            "Monthly overview": 'Monthly overview',
+            "Edit profile": 'Edit profile',
+            "Log out": 'Log out',
+            "Add new expense": 'Add new expense',
+            "Search": 'Search',
+            "of": 'of'
+        },
+
+        test: {
+            "Groceries": 'Groceries',
+            "Household": 'Household',
+            "Hygiene": 'Hygiene',
+            "September": 'September',
+            "August": 'August',
+            "July": 'July',
+            "June": 'June',
+            "Eggs": 'Eggs',
+            "pcs": 'pcs',
+            "Name": 'Name',
+            "Date": 'Date',
+            "Quantity": 'Qty',
+            "Category": 'Category',
+            "Price": 'Price'
         }
     }
 }

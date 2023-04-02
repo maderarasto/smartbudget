@@ -6,6 +6,7 @@ const sk = {
             "Recover password": 'Obnovenie hesla',
             "Reset password": 'Nastavenie hesla',
             "Overview": 'Prehľad',
+            "Budget sheet": 'Rozpočtový hárok',
         },
 
         labels: {
@@ -28,7 +29,31 @@ const sk = {
             "Create account": 'Vytvoriť účet',
             "Send email": 'Odoslať e-mail',
             "Reset password": 'Nastaviť heslo',
-            "Return to back": 'Návrat späť'
+            "Return to back": 'Návrat späť',
+            "Your budget sheets": 'Vaše rozpočtové hárky',
+            "Monthly overview": 'Mesačný prehľad',
+            "Edit profile": 'Upraviť profil',
+            "Log out": 'Odhlásiť sa',
+            "Add new expense": 'Pridať nový výdavok',
+            "Search": 'Hľadať',
+            "of": 'z'
+        },
+
+        test: {
+            "Groceries": 'Potraviny',
+            "Household": 'Domácnosť',
+            "Hygiene": 'Hygiena',
+            "September": 'September',
+            "August": 'August',
+            "July": 'Júl',
+            "June": 'Jún',
+            "Eggs": 'Vajcia',
+            "pcs": 'ks',
+            "Name": 'Názov',
+            "Date": 'Dátum',
+            "Quantity": 'Množ.',
+            "Category": 'Kategória',
+            "Price": 'Cena'
         }
     }
 }

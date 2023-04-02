@@ -1,199 +1,51 @@
-import React from 'react';
+import React, {memo} from 'react';
 
 import Layout from './Layouts/Layout';
 import Sidebar from '../components/Sidebar';
 import ExpenseTable from '../components/ExpenseTable';
+import {useTranslation} from "react-i18next";
 
-export default function Finances() {
+// Necessary to wrap a page component into memo function
+// because InertiaJS making page components load twice
+const Finances = memo(({user}) => {
+    const {t} = useTranslation();
     const expensesList = {
         columns: [
             { key: 'id', label: '', style: { width: '50px', textAlign: 'center'} },
-            { key: 'name', label: 'Name', style: { width: '350px'} },
-            { key: 'date', label: 'Date', style: { width: '250px'}  },
-            { key: 'quantity', label: 'Quantity', style: { width: '150px'}  },
-            { key: 'category', label: 'Category', style: { width: '200px'}  },
-            { key: 'price', label: 'Price', style: { width: '150px'}  }
+            { key: 'name', label: t('test.Name'), style: { width: '350px'} },
+            { key: 'date', label: t('test.Date'), style: { width: '250px'}  },
+            { key: 'quantity', label:t('test.Quantity'), style: { width: '75px'}  },
+            { key: 'category', label: t('test.Category'), style: { width: '200px'}  },
+            { key: 'price', label: t('test.Price'), style: { width: '150px'}  }
         ],
-        data: [
-            {
-                id: 1,
-                name: 'Eggs 6pcs',
-                quantity: 1,
-                category: 'groceries',
-                price: '2.99',
-                currency: 'EUR'
-            },
-            {
-                id: 2,
-                name: 'Eggs 6pcs',
-                quantity: 1,
-                category: 'groceries',
-                price: '2.99',
-                currency: 'EUR'
-            },
-            {
-                id: 3,
-                name: 'Eggs 6pcs',
-                quantity: 1,
-                category: 'groceries',
-                price: '2.99',
-                currency: 'EUR'
-            },
-            {
-                id: 4,
-                name: 'Eggs 6pcs',
-                quantity: 1,
-                category: 'groceries',
-                price: '2.99',
-                currency: 'EUR'
-            },
-            {
-                id: 5,
-                name: 'Eggs 6pcs',
-                quantity: 1,
-                category: 'groceries',
-                price: '2.99',
-                currency: 'EUR'
-            },
-            {
-                id: 6,
-                name: 'Eggs 6pcs',
-                quantity: 1,
-                category: 'groceries',
-                price: '2.99',
-                currency: 'EUR'
-            },
-            {
-                id: 7,
-                name: 'Eggs 6pcs',
-                quantity: 1,
-                category: 'groceries',
-                price: '2.99',
-                currency: 'EUR'
-            },
-            {
-                id: 8,
-                name: 'Eggs 6pcs',
-                quantity: 1,
-                category: 'groceries',
-                price: '2.99',
-                currency: 'EUR'
-            },
-            {
-                id: 9,
-                name: 'Eggs 6pcs',
-                quantity: 1,
-                category: 'groceries',
-                price: '2.99',
-                currency: 'EUR'
-            },
-            {
-                id: 10,
-                name: 'Eggs 6pcs',
-                quantity: 1,
-                category: 'groceries',
-                price: '2.99',
-                currency: 'EUR'
-            },
-            {
-                id: 1,
-                name: 'Eggs 6pcs',
-                quantity: 1,
-                category: 'groceries',
-                price: '2.99',
-                currency: 'EUR'
-            },
-            {
-                id: 2,
-                name: 'Eggs 6pcs',
-                quantity: 1,
-                category: 'groceries',
-                price: '2.99',
-                currency: 'EUR'
-            },
-            {
-                id: 3,
-                name: 'Eggs 6pcs',
-                quantity: 1,
-                category: 'groceries',
-                price: '2.99',
-                currency: 'EUR'
-            },
-            {
-                id: 4,
-                name: 'Eggs 6pcs',
-                quantity: 1,
-                category: 'groceries',
-                price: '2.99',
-                currency: 'EUR'
-            },
-            {
-                id: 5,
-                name: 'Eggs 6pcs',
-                quantity: 1,
-                category: 'groceries',
-                price: '2.99',
-                currency: 'EUR'
-            },
-            {
-                id: 6,
-                name: 'Eggs 6pcs',
-                quantity: 1,
-                category: 'groceries',
-                price: '2.99',
-                currency: 'EUR'
-            },
-            {
-                id: 7,
-                name: 'Eggs 6pcs',
-                quantity: 1,
-                category: 'groceries',
-                price: '2.99',
-                currency: 'EUR'
-            },
-            {
-                id: 8,
-                name: 'Eggs 6pcs',
-                quantity: 1,
-                category: 'groceries',
-                price: '2.99',
-                currency: 'EUR'
-            },
-            {
-                id: 9,
-                name: 'Eggs 6pcs',
-                quantity: 1,
-                category: 'groceries',
-                price: '2.99',
-                currency: 'EUR'
-            },
-            {
-                id: 10,
-                name: 'Eggs 6pcs',
-                quantity: 1,
-                category: 'groceries',
-                price: '2.99',
-                currency: 'EUR'
-            }
-        ]
+        data: Array.from(new Array(10)).map(() => ({
+            id: Math.random() * 999 + 1,
+            name: `${t('test.Eggs')} 6${t('test.pcs')}`,
+            quantity: Math.floor(Math.random() * 9 + 1),
+            category: t('test.Groceries'),
+            price: Math.round((Math.random() * 9 + 1 + Number.EPSILON) * 100) / 100,
+            currency: 'EUR'
+        }))
     }
 
-
+    console.log(expensesList);
 
     return (
         <div className="page page-finances">
-            <Sidebar />
+            <Sidebar user={user.data} />
             <div className="page-finances__content">
                 <div className="content-title">
-                    <small>Budget sheet</small>
+                    <small>{t('titles.Budget sheet')}</small>
                     <h1 style={{ alignSelf: 'flex-start'}}>September 2023</h1>
                 </div>
                 <ExpenseTable columns={expensesList.columns} data={expensesList.data} />
             </div>
         </div>
     );
-}
+});
 
 Finances.layout = (page) => {
     return <Layout children={page} title={page.props.title} bsColClass={page.props.bsColClass} />
 };
+
+export default  Finances;
