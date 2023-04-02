@@ -7,6 +7,7 @@ Web application for managing your budget. Covering: PHP, Laravel, Intertia.js, R
 - added functionality and page with sending url for resetting password via email
 - added functionality and page with setting up a new password
 - added sidebar component with budgets sheets and monthly overview sections
+- added context menu on settings button in user panel
 
 ###  In progress
 - nothing for now
