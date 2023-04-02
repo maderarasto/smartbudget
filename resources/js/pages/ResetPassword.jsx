@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {memo} from 'react'
 import { useForm, Link } from '@inertiajs/react';
 import { useTranslation} from "react-i18next";
 
@@ -8,7 +8,9 @@ import { faLock, faCheck } from '@fortawesome/free-solid-svg-icons'
 import Layout from "./Layouts/Layout";
 import logo from "../../img/smartbudget_logo.png";
 
-export default function ResetPassword({urls}) {
+// Necessary to wrap a page component into memo function
+// because InertiaJS making page components load twice
+const ResetPassword = memo(({urls}) => {
     const {t} = useTranslation();
     const { setData, post, errors} = useForm({
         email: getQueryParam('email'),
@@ -68,9 +70,10 @@ export default function ResetPassword({urls}) {
             </div>
         </div>
     );
-}
+});
 
 ResetPassword.layout = (page) => {
     return <Layout children={page} title={page.props.title} bsColClass={page.props.bsColClass} />
 };
 
+export default ResetPassword;

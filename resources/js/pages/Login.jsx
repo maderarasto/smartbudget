@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {memo} from 'react'
 import { useForm, Link } from '@inertiajs/react';
 import { useTranslation} from "react-i18next";
 
@@ -8,7 +8,9 @@ import { faUser, faLock, faSignIn} from '@fortawesome/free-solid-svg-icons'
 import Layout from './Layouts/Layout';
 import logo from '../../img/smartbudget_logo.png';
 
-export default function Login({urls}) {
+// Necessary to wrap a page component into memo function
+// because InertiaJS making page components load twice
+const Login = memo(({urls}) => {
     const {t} = useTranslation();
     const { data, setData, post, reset, errors} = useForm({
         email: '',
@@ -82,9 +84,10 @@ export default function Login({urls}) {
             </div>
         </div>
     );
-}
+});
 
 Login.layout = (page) => {
     return <Layout children={page} title={page.props.title} bsColClass={page.props.bsColClass} notification={page.props.notification} />
 };
 
+export default Login;

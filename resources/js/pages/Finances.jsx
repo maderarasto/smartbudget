@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {memo} from 'react';
 
 import Layout from './Layouts/Layout';
 import Sidebar from '../components/Sidebar';
 import ExpenseTable from '../components/ExpenseTable';
 
-export default function Finances({user}) {
+// Necessary to wrap a page component into memo function
+// because InertiaJS making page components load twice
+const Finances = memo(({user}) => {
     const expensesList = {
         columns: [
             { key: 'id', label: '', style: { width: '50px', textAlign: 'center'} },
@@ -110,8 +112,10 @@ export default function Finances({user}) {
             </div>
         </div>
     );
-}
+});
 
 Finances.layout = (page) => {
     return <Layout children={page} title={page.props.title} bsColClass={page.props.bsColClass} />
 };
+
+export default  Finances;
