@@ -19,7 +19,11 @@ class HandleLocale
     {
         $locale = 'en';
 
-        if ($request->hasHeader('api-locale'))
+        if ($request->has('lang'))
+        {
+            $locale = $request->get('lang', 'en');
+        }
+        else if ($request->hasHeader('api-locale'))
         {
             $locale = $request->header('api-locale');
         }

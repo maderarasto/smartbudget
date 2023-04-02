@@ -3,13 +3,15 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faCog} from '@fortawesome/free-solid-svg-icons';
 
 import ContextMenu from "./ContextMenu";
+import {useTranslation} from "react-i18next";
 
 export default function UserPanel({user}) {
     const contextMenuRef = useRef(null);
+    const {t} = useTranslation();
 
     const settingActions = [
-        { action: 'edit-profile', label: 'Edit profile', disabled: true },
-        { action: 'logout', label: 'Logout' }
+        { action: 'edit-profile', label: t('phrases.Edit profile'), disabled: true },
+        { action: 'logout', label: t('phrases.Log out') }
     ];
 
     function  handleSettingActions(action) {
@@ -54,23 +56,3 @@ export default function UserPanel({user}) {
         </div>
     )
 }
-
-/**
- * const menuItems = [
- *     { action: 'edit-profile', label: 'Upravit profil' },
- *     { action: 'logout', label: 'Odhlasit' },
- * ]
- *
- * <ContextMenu actions={menuItems} />
- *
- * <ContextMenu>
- *     <MenuItem icon={faPlus} action="edit-profile" label="Upravit profil" onClick={handleContextClick} />
- * </ContextMenu>
- *
- * <ContextMenu>
- *     <MenuItem>
- *         <FontAwesomeIcon icon={faPlus} />
- *         <span>Upravit profil />
- *     </MenuItem>
- * </ContextMenu>
- */

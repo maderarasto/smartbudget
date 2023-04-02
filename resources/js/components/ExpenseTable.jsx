@@ -1,8 +1,23 @@
 import React from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleLeft, faAngleRight, faMagnifyingGlass, faPlus, faPlusCircle} from "@fortawesome/free-solid-svg-icons";
+import {useTranslation} from "react-i18next";
 
 export default function ExpenseTable({columns, data, pagination, total}) {
+    const {t} = useTranslation();
+
+    function getTableCellValue(expenseItem, columnKey) {
+        let value = expenseItem[columnKey];
+
+        if (columnKey === 'category') {
+            value = <span className="badge bg-warning">{value}</span>;
+        } else if (columnKey === 'price') {
+            value += ` ${expenseItem.currency}`;
+        }
+
+        return value;
+    }
+
     function renderTableHeader({key, label, style}) {
         const element = key !== 'id' ? 'span' : 'input';
         const child = element === 'span' ? React.createElement(element, {}, label) :
@@ -19,14 +34,19 @@ export default function ExpenseTable({columns, data, pagination, total}) {
 
     function renderTableCell(expenseItem, {key: columnKey, style: columnStyle}) {
         const element = columnKey === 'id' ? 'th' : 'td';
-        const child = columnKey !== 'id' ? expenseItem[columnKey] : React.createElement('input', {
+        const childStyle = {...columnStyle};
+        const child = columnKey !== 'id' ? getTableCellValue(expenseItem, columnKey) : React.createElement('input', {
             type: 'checkbox',
             className: 'form-check-input'
         });
 
+        if (columnKey !== 'id' && !isNaN(expenseItem[columnKey])) {
+            childStyle.textAlign = 'right';
+        }
+
         return React.createElement(element, {
             key: columnKey,
-            style: columnStyle
+            style: childStyle
         }, child);
     }
 
@@ -35,13 +55,13 @@ export default function ExpenseTable({columns, data, pagination, total}) {
             <div className="expense-table__toolbar">
                 <button className="btn">
                     <FontAwesomeIcon icon={faPlus} />
-                    <span>Add new expense</span>
+                    <span>{t('phrases.Add new expense')}</span>
                 </button>
 
                 <form>
                     <div className="input-with-icon">
                         <FontAwesomeIcon icon={faMagnifyingGlass} />
-                        <input type="text" className="form-control" placeholder="Search..." />
+                        <input type="text" className="form-control" placeholder={t('phrases.Search')} />
                     </div>
                 </form>
             </div>
