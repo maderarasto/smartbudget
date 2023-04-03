@@ -28,8 +28,6 @@ const Finances = memo(({user}) => {
         }))
     }
 
-    console.log(expensesList);
-
     return (
         <div className="page page-finances">
             <Sidebar user={user.data} />

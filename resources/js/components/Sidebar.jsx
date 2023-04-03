@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react';
-import {faBasketShopping, faHouse, faSoap} from '@fortawesome/free-solid-svg-icons';
+import {faBasketShopping, faGear, faHouse, faPlus, faSoap} from '@fortawesome/free-solid-svg-icons';
 
 import MenuSheetItem from './MenuSheetItem';
 import MenuOverviewItem from './MenuOverviewItem';
@@ -7,6 +7,8 @@ import UserPanel from './UserPanel';
 
 import logo from '../../img/smartbudget_logo.png';
 import {useTranslation} from "react-i18next";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import Tooltip from "./Tooltip";
 
 export default function Sidebar({user}) {
     const [budgetSheets, setBudgetSheets] = useState([]);
@@ -41,7 +43,14 @@ export default function Sidebar({user}) {
                 <img src={logo} alt="SmartBudget logo" />
             </div>
             <div className="sidebar__section sheets">
-                <small className="title">{t('phrases.Your budget sheets')}</small>
+                <div className="section__header">
+                    <small className="title">{t('phrases.Your budget sheets')}</small>
+                    <div>
+                        <Tooltip text={t('phrases.Create a budget sheet')}>
+                            <FontAwesomeIcon icon={faPlus} size="sm" />
+                        </Tooltip>
+                    </div>
+                </div>
                 <div className="sheets-list">
                     {budgetSheets.map(({name, active}, index) => (
                         <MenuSheetItem
@@ -52,7 +61,17 @@ export default function Sidebar({user}) {
                 </div>
             </div>
             <div className="sidebar__section overview">
-                <small className="title">{t('phrases.Monthly overview')}</small>
+                <div className="section__header">
+                    <small className="title">{t('phrases.Monthly overview')}</small>
+                    <div>
+                        <Tooltip text={t('phrases.Add expense pointer')}>
+                            <FontAwesomeIcon icon={faPlus} size="sm" />
+                        </Tooltip>
+                        <Tooltip text={t('phrases.Manage expense pointers')}>
+                            <FontAwesomeIcon icon={faGear} size="sm" />
+                        </Tooltip>
+                    </div>
+                </div>
                 <div className="overview-list">
                     <MenuOverviewItem name={t('test.Groceries')} icon={faBasketShopping} budget={150} sum={123.5} currency="EUR" />
                     <MenuOverviewItem name={t('test.Household')} icon={faHouse} budget={50} sum={11.2} currency="EUR" />

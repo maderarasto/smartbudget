@@ -51,10 +51,30 @@
     border-bottom: 1px solid lightgray;
 }
 
-.sidebar__section > .title {
+.sidebar__section .section__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sidebar__section .section__header > small {
     font-weight: bold;
     text-transform: uppercase;
-    color: var(--secondary)
+    color: var(--secondary-color)
+}
+
+.sidebar__section .section__header svg {
+    margin-left: 0.5em;
+    cursor: pointer;
+    color: var(--btn-secondary-color);
+}
+
+.sidebar__section .section__header svg:hover {
+    color: var(--btn-secondary-hover-color);
+}
+
+.sidebar__section .section__header svg:active:hover {
+    color: var(--btn-secondary-active-color);
 }
 
 .sidebar__section.sheets {
@@ -91,7 +111,7 @@
 }
 
 .menu-sheets-item:hover {
-    background-color: var(--primary-highlight);
+    background-color: var(--menu-item-highlight-color);
 }
 
 .menu-sheets-item > span {
@@ -100,7 +120,7 @@
 
 
 .menu-sheets-item.active {
-    background-color: var(--primary);
+    background-color: var(--menu-item-selected-color);
     color: white;
 }
 
@@ -161,12 +181,8 @@
     height: 32px;
     border-radius: 50%;
 
-    background-color: var(--primary);
+    background-color: var(--primary-color);
     cursor: pointer;
-}
-
-.user-panel__photo:hover {
-    background-color: var(--primary-highlight);
 }
 
 .user-panel__photo > span {
@@ -188,22 +204,25 @@
 .user-panel__details-email {
     font-size: 12px;
     line-height: 12px;
-    color: var(--secondary);
+    color: var(--secondary-color);
 }
 
 .user-panel__action {
     flex: 0.1
 }
 .user-panel__action svg {
-    color: var(--secondary);
+    color: var(--btn-secondary-color);
     cursor: pointer;
 }
 
 
 .user-panel__action svg:hover {
-    color: var(--secondary-highlight);
+    color: var(--btn-secondary-hover-color);
 }
 
+.user-panel__action svg:active:hover {
+    color: var(--btn-secondary-active-color);
+}
 
 /**  ExpenseTable component */
 .expense-table {
@@ -218,7 +237,15 @@
 }
 
 .expense-table__toolbar > button {
-    background-color: var(--primary);
+    background-color: var(--btn-primary-color);
+}
+
+.expense-table__toolbar > button:hover {
+    background-color: var(--btn-primary-hover-color);
+}
+
+.expense-table__toolbar > button:active:hover {
+    background-color: var(--btn-primary-active-color);
 }
 
 .expense-table__toolbar > button > svg {
@@ -239,7 +266,7 @@
     inset: 50% 16px auto auto;
     transform: translateY(-50%);
 
-    color: #6f6f6f;
+    color: var(--secondary-color);
 }
 
 .expense-table__toolbar .input-with-icon input {
@@ -248,18 +275,17 @@
 }
 
 .expense-table__toolbar:has(.input-with-icon input:focus) svg[data-icon="magnifying-glass"] {
-    color: var(--black) !important;
+    color: var(--secondary-highlight-color) !important;
 }
 
 .expense-table__table {
+    position: relative;
     min-height: 440px;
     max-height: 840px;
-    border: 1px solid #d6d6d6;
-    /*background-color: white;*/
+    border: 1px solid var(--border-color);
 }
 
 .expense-table__table .table {
-    position: relative;
     margin-bottom: 0;
 }
 
@@ -267,7 +293,7 @@
     font-size: 14px;
     font-weight: bold;
     text-transform: uppercase;
-    background-color: #eee;
+    background-color: var(--table-header-color);
 }
 
 .expense-table__table tbody > * > *  {
@@ -284,24 +310,24 @@
 }
 
 .expense-table__table tbody > *:nth-child(even) > * {
-    background-color: #f5f5f5;
+    background-color: var(--table-striped-color);
 }
 
 .expense-table__table .table-default-message {
     position: absolute;
     inset: 50% auto auto 50%;
-    transform: translate(25%, -25%);
+    transform: translate(-50%, -50%);
     text-align: center;
 }
 
 .expense-table__table .table-default-message svg {
     margin: 2rem;
-    font-size: 96px;
-    color: #6f6f6f;
+    font-size: 64px;
+    color: var(--secondary-color);
 }
 
 .expense-table__table .table-default-message h3 {
-    color: #6f6f6f;
+    color: var(--secondary-color);
 }
 
 .expense-table__footer {
@@ -316,8 +342,16 @@
 }
 
 .expense-table__footer .table-paginator > button {
-    background-color: var(--primary);
+    background-color: var(--btn-primary-color);
     color: white;
+}
+
+.expense-table__footer .table-paginator > button:hover {
+    background-color: var(--btn-primary-hover-color);
+}
+
+.expense-table__footer .table-paginator > button:active:hover {
+    background-color: var(--btn-primary-active-color);
 }
 
 .expense-table__footer .table-paginator__page {
@@ -330,7 +364,7 @@
 
     font-weight: 500;
     text-transform: uppercase;
-    color: var(--black);
+    color: var(--black-color);
 }
 
 /** ContextMenu component */
@@ -338,7 +372,7 @@
     position: absolute;
 
     padding: 2px 4px;
-    border: 1px solid #d6d6d6;
+    border: 1px solid var(--border-color);
     box-sizing: border-box;
     list-style-type: none;
     background-color: white;

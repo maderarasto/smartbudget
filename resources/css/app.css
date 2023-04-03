@@ -56,7 +56,7 @@
 .page-finances__content .content-title > small {
     font-weight: bold;
     text-transform: uppercase;
-    color: #6f6f6f;
+    color: var(--secondary-color);
 }
 
 .page-finances__content .content-title > h1{
@@ -64,5 +64,5 @@
 }
 
 .page-finances .context-menu.opened + svg {
-    color: var(--secondary);
+    color: var(--secondary-color);
 }

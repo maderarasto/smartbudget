@@ -1,10 +1,17 @@
-import React from 'react';
+import React, {useRef, createRef, useEffect} from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleLeft, faAngleRight, faMagnifyingGlass, faPlus, faPlusCircle} from "@fortawesome/free-solid-svg-icons";
 import {useTranslation} from "react-i18next";
 
 export default function ExpenseTable({columns, data, pagination, total}) {
     const {t} = useTranslation();
+    const checkboxRefs = useRef([]);
+
+    // useEffect(() => {
+    //     checkboxRefs.current = Array(data.length)
+    //         .fill(0)
+    //         .map((_, index) => checkboxRefs.current[index] || createRef());
+    // }, []);
 
     function getTableCellValue(expenseItem, columnKey) {
         let value = expenseItem[columnKey];
@@ -23,7 +30,19 @@ export default function ExpenseTable({columns, data, pagination, total}) {
         const child = element === 'span' ? React.createElement(element, {}, label) :
             React.createElement(element, {
                 type: 'checkbox',
-                className: 'form-check-input'
+                className: 'form-check-input',
+                onChange: function (ev) {
+                    const checkedCount = checkboxRefs.current.reduce(
+                        (total, checkboxEl) => total + (checkboxEl.checked ? 1 : 0), 0);
+
+                    checkboxRefs.current.forEach(checkboxEl => {
+                        checkboxEl.checked = checkedCount >= checkboxRefs.current.length ? !checkboxEl.checked : true;
+                    });
+
+                    if (checkedCount < checkboxRefs.current.length) {
+                        ev.target.checked = true;
+                    }
+                }
             });
 
         return React.createElement('th', {
@@ -32,12 +51,13 @@ export default function ExpenseTable({columns, data, pagination, total}) {
         }, child);
     }
 
-    function renderTableCell(expenseItem, {key: columnKey, style: columnStyle}) {
+    function renderTableCell(index, expenseItem, {key: columnKey, style: columnStyle}) {
         const element = columnKey === 'id' ? 'th' : 'td';
         const childStyle = {...columnStyle};
         const child = columnKey !== 'id' ? getTableCellValue(expenseItem, columnKey) : React.createElement('input', {
             type: 'checkbox',
-            className: 'form-check-input'
+            className: 'form-check-input',
+            ref: (el) => checkboxRefs.current.push(el)
         });
 
         if (columnKey !== 'id' && !isNaN(expenseItem[columnKey])) {
@@ -53,7 +73,7 @@ export default function ExpenseTable({columns, data, pagination, total}) {
     return (
         <div className="expense-table">
             <div className="expense-table__toolbar">
-                <button className="btn">
+                <button type="button" className="btn btn-primary">
                     <FontAwesomeIcon icon={faPlus} />
                     <span>{t('phrases.Add new expense')}</span>
                 </button>
@@ -80,10 +100,10 @@ export default function ExpenseTable({columns, data, pagination, total}) {
                     </thead>
                     <tbody>
                     {
-                        data.map(expenseItem => (
+                        data.map((expenseItem, index) => (
                             <tr key={expenseItem.id}>
                                 {
-                                    columns.map(column => renderTableCell(expenseItem, column))
+                                    columns.map(column => renderTableCell(index, expenseItem, column))
                                 }
                             </tr>
                         ))
@@ -93,13 +113,13 @@ export default function ExpenseTable({columns, data, pagination, total}) {
             </div>
             <div className="expense-table__footer">
                 <div className="table-paginator">
-                    <button className="btn btn-sm">
+                    <button className="btn btn-primary btn-sm">
                         <FontAwesomeIcon icon={faAngleLeft} />
                     </button>
                     <div className="table-paginator__page btn btn-sm">
-                        1 of 10
+                        1 {t('phrases.of')} 10
                     </div>
-                    <button className="btn btn-sm">
+                    <button className="btn btn-primary btn-sm">
                         <FontAwesomeIcon icon={faAngleRight} />
                     </button>
                 </div>
