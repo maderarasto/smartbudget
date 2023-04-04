@@ -1,14 +1,18 @@
-import React, {memo} from 'react';
+import React, {memo, useRef} from 'react';
 
 import Layout from './Layouts/Layout';
 import Sidebar from '../components/Sidebar';
 import ExpenseTable from '../components/ExpenseTable';
 import {useTranslation} from "react-i18next";
+import FormModal from "../components/FormModal";
+import modal from "bootstrap/js/src/modal";
 
 // Necessary to wrap a page component into memo function
 // because InertiaJS making page components load twice
 const Finances = memo(({user}) => {
     const {t} = useTranslation();
+    const modalRef = useRef(null);
+
     const expensesList = {
         columns: [
             { key: 'id', label: '', style: { width: '50px', textAlign: 'center'} },
@@ -38,6 +42,7 @@ const Finances = memo(({user}) => {
                 </div>
                 <ExpenseTable columns={expensesList.columns} data={expensesList.data} />
             </div>
+            <FormModal ref={modalRef} />
         </div>
     );
 });
